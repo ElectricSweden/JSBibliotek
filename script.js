@@ -20,7 +20,7 @@ function showCover(book, count)
     return `
     <img src="${book.cover}"  onclick="drawContent(${book.ISBN})">
     `;
-}
+} 
 
 const book = {
     title: "undefined",
@@ -33,7 +33,11 @@ const book = {
 var library = [
     { title: "Harry Potter and the Philosopher's Stone", author: "JK.Rowling", ISBN: 1, availability: true, cover: "./covers/harrypotterstonecover.jpg"},
     { title: "Harry Potter and the Chamber of Secrets", author: "JK.Rowling", ISBN: 2, availability: true, cover: "./covers/chamber2.jpg"},
-    { title: "Harry Potter and the Prisoner of Azkaban", author: "JK.Rowling", ISBN: 3, availability: true, cover: "./covers/harrypotterprisoner.jpg"}
+    { title: "Harry Potter and the Prisoner of Azkaban", author: "JK.Rowling", ISBN: 3, availability: true, cover: "./covers/harrypotterprisoner.jpg"},
+    { title: "Art Of War", author: "Sun Tzu", ISBN: 4, availability: true, cover: "./covers/artofwar.jpeg"},
+    { title: "Behemoth", author: "Scott Westerfeld", ISBN: 5, availability: true, cover: "./covers/behemoth.jpg"},
+    { title: "Goliath", author: "Scott Westerfeld", ISBN: 6, availability: true, cover: "./covers/goliath.jpg"},
+    { title: "Leviathan", author: "Scott Westerfeld", ISBN: 7, availability: true, cover: "./covers/leviathan.jpg"}
 ];
 
 
@@ -45,7 +49,7 @@ function borrow(bookISBN)
             if (book.ISBN == bookISBN)
                 book.availability = false;
         });
-        document.getElementById("title").style.display = "flex";
+        document.getElementById("title").innerHTML = "Available books at the library";
         console.log(bookISBN + " borrowed successfully.");
         drawBooks();
     }
@@ -75,12 +79,27 @@ function drawContent(bookISBN)
 {
     var count = 0;
     books.innerHTML = "";
-    document.getElementById("title").style.display = "none";
+    document.getElementById("title").innerHTML = "The Borrowing Station";
     library.forEach(book => {
         if (book.ISBN == bookISBN)
         {
             books.innerHTML += showAvailable(book, count)
             count++
+        }
+    })
+}
+
+function showMyBooks()
+{
+    books.innerHTML = "";
+    var count = 0;
+    document.getElementById("title").innerHTML = "My Books";
+    document.getElementById("mybooks").innerHTML = "To Library";
+    library.forEach(book => {
+        if (book.availability == false)
+        {
+            books.innerHTML += showCover(book, count);
+            count++;
         }
     })
 }

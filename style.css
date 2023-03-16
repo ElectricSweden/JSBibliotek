@@ -24,6 +24,7 @@
 
 #books {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 40px;
@@ -40,5 +41,31 @@
 img {
     width: 250px;
     height: 400px;
+    cursor: pointer;
+}
+
+.info {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    right: 0;
+    top: 98vh;
+    background-color: transparent;
+}
+
+.obs {
+    color: #C4D300;
+    z-index: 2;
+}
+
+#mybooks {
+    background-color: royalblue;
+    width: 150px;
+    height: 50px;
+    border: none;
+    color: white;
+}
+
+#mybooks:hover {
     cursor: pointer;
 }
